@@ -10,28 +10,14 @@ import {
 } from "reactstrap";
 import Form from "react-bootstrap/Form";
 
-const CreateModal = ({ statuses, priorities, createTask }) => {
-  const initialState = {
-    name: "",
-    description: "",
-    status: statuses[0]?.status,
-    priority: priorities[0],
-  };
+const UpdateModal = ({ statuses, priorities, task, updateTask }) => {
   const [modal, setModal] = useState(false);
-  const toggle = () => {
-    setModal(!modal);
-    setNewTask(initialState);
-  };
-  const [newTask, setNewTask] = useState({
-    name: "",
-    description: "",
-    status: statuses[0]?.status,
-    priority: priorities[0],
-  });
+  const toggle = () => setModal(!modal);
+  const [newTask, setNewTask] = useState(task);
 
   const onSave = () => {
     toggle();
-    createTask(newTask);
+    updateTask(newTask);
   };
 
   const onCancel = () => {
@@ -40,11 +26,11 @@ const CreateModal = ({ statuses, priorities, createTask }) => {
 
   return (
     <div>
-      <Button color="primary" onClick={toggle}>
-        Click Me
+      <Button variant="button" color="warning" outline onClick={toggle}>
+        Update
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Create Task</ModalHeader>
+        <ModalHeader toggle={toggle}>Update</ModalHeader>
 
         <ModalBody>
           <InputGroup style={{ marginBottom: "15px" }}>
@@ -54,14 +40,14 @@ const CreateModal = ({ statuses, priorities, createTask }) => {
               placeholder="task name"
             />
           </InputGroup>
-          <InputGroup
-            onChange={(e) =>
-              setNewTask({ ...newTask, description: e.target.value })
-            }
-            value={newTask.description}
-            style={{ marginBottom: "15px" }}
-          >
-            <Input placeholder="task description" />
+          <InputGroup style={{ marginBottom: "15px" }}>
+            <Input
+              onChange={(e) =>
+                setNewTask({ ...newTask, description: e.target.value })
+              }
+              placeholder="task description"
+              value={newTask.description}
+            />
           </InputGroup>
 
           <Form.Select
@@ -110,4 +96,4 @@ const CreateModal = ({ statuses, priorities, createTask }) => {
   );
 };
 
-export default CreateModal;
+export default UpdateModal;

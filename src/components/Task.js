@@ -1,7 +1,16 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import UpdateModal from "./UpdateModal";
+import DeleteModal from "./DeleteModal";
 
-const Task = ({ task, statuses, changeStatus }) => {
+const Task = ({
+  task,
+  statuses,
+  changeStatus,
+  priorities,
+  updateTask,
+  deleteTask,
+}) => {
   return (
     <div className="card" style={{ margin: "5px" }}>
       <div className="card-body">
@@ -30,20 +39,15 @@ const Task = ({ task, statuses, changeStatus }) => {
         >
           ←
         </Button>
-        <Button
-          disabled={task.status === statuses[0].status}
-          variant="outline-warning"
-          style={{ marginLeft: "5px", marginRight: "5px" }}
-        >
-          Update
-        </Button>
-        <Button
-          disabled={task.status === statuses[0].status}
-          variant="outline-danger"
-          style={{ marginRight: "5px" }}
-        >
-          Delete
-        </Button>
+        <UpdateModal
+          statuses={statuses}
+          priorities={priorities}
+          changeStatus={changeStatus}
+          task={task}
+          updateTask={updateTask}
+        />
+
+        <DeleteModal task={task} deleteTask={deleteTask} />
         <Button
           onClick={() => changeStatus(task, 1)}
           disabled={task.status === statuses[statuses.length - 1].status}

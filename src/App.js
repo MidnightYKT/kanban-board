@@ -52,6 +52,19 @@ function App() {
       });
   };
 
+  const updateTask = (task) => {
+    console.log(task);
+    axios
+      .patch(`https://expressjs-server.vercel.app/tasks/${task._id}`, task)
+      .then((res) => {
+        getTasks();
+      })
+      .catch((e) => {
+        console.log(e);
+        alert("server in unavailable");
+      });
+  };
+
   const changeStatus = (task, direction) => {
     const stringStatuses = statuses.map((el) => el.title);
     const currentIndex = stringStatuses.indexOf(task?.status);
@@ -63,6 +76,18 @@ function App() {
       .patch(`https://expressjs-server.vercel.app/tasks/${task._id}`, {
         status,
       })
+      .then((res) => {
+        getTasks();
+      })
+      .catch((e) => {
+        console.log(e);
+        alert("something is going wrong");
+      });
+  };
+
+  const deleteTask = (task) => {
+    axios
+      .delete(`https://expressjs-server.vercel.app/tasks/${task._id}`)
       .then((res) => {
         getTasks();
       })
@@ -89,6 +114,9 @@ function App() {
               column={el}
               tasks={tasks}
               changeStatus={changeStatus}
+              deleteTask={deleteTask}
+              priorities={priorities}
+              updateTask={updateTask}
             />
           ))}
         </div>
