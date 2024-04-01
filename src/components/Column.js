@@ -9,14 +9,15 @@ const Column = ({
   priorities,
   updateTask,
   deleteTask,
+  changePriority,
 }) => {
   console.log(tasks);
   return (
-    <div className="col">
-      <h3>{column.title}</h3>
+    <div className="col-6 col-md-3">
+      <h3 className="text-center">{column.title}</h3>
       {tasks
-        .sort((el1, el2) => el1.priority - el2.priority)
         .filter((el) => el.status === column.status)
+        .sort((el1, el2) => el2.priority - el1.priority)
         .map((el) => (
           <Task
             task={el}
@@ -26,6 +27,7 @@ const Column = ({
             priorities={priorities}
             updateTask={updateTask}
             deleteTask={deleteTask}
+            changePriority={changePriority}
           />
         ))}
     </div>

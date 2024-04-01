@@ -29,7 +29,7 @@ const DeleteModal = ({ task, deleteTask }) => {
   return (
     <div>
       <Button variant="button" color="danger" outline onClick={toggle}>
-        Delete
+        ×
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Delete</ModalHeader>

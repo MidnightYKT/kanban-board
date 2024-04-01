@@ -25,8 +25,8 @@ const UpdateModal = ({ statuses, priorities, task, updateTask }) => {
   };
 
   return (
-    <div>
-      <Button variant="button" color="warning" outline onClick={toggle}>
+    <div className="mx-1">
+      <Button outline onClick={toggle}>
         Update
       </Button>
       <Modal isOpen={modal} toggle={toggle}>

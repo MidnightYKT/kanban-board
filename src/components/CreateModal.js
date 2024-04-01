@@ -40,8 +40,8 @@ const CreateModal = ({ statuses, priorities, createTask }) => {
 
   return (
     <div>
-      <Button color="primary" onClick={toggle}>
-        Click Me
+      <Button color="success" outline onClick={toggle}>
+        Create task
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Create Task</ModalHeader>
@@ -51,7 +51,7 @@ const CreateModal = ({ statuses, priorities, createTask }) => {
             <Input
               onChange={(e) => setNewTask({ ...newTask, name: e.target.value })}
               value={newTask.name}
-              placeholder="task name"
+              placeholder="Task name"
             />
           </InputGroup>
           <InputGroup
@@ -61,7 +61,7 @@ const CreateModal = ({ statuses, priorities, createTask }) => {
             value={newTask.description}
             style={{ marginBottom: "15px" }}
           >
-            <Input placeholder="task description" />
+            <Input placeholder="Task description" />
           </InputGroup>
 
           <Form.Select

@@ -1,7 +1,6 @@
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
-import "./App.css";
 
 import Column from "./components/Column";
 import CreateModal from "./components/CreateModal";
@@ -53,7 +52,6 @@ function App() {
   };
 
   const updateTask = (task) => {
-    console.log(task);
     axios
       .patch(`https://expressjs-server.vercel.app/tasks/${task._id}`, task)
       .then((res) => {
@@ -85,6 +83,22 @@ function App() {
       });
   };
 
+  const changePriority = (task, num) => {
+    const priority = task.priority + num;
+
+    axios
+      .patch(`https://expressjs-server.vercel.app/tasks/${task._id}`, {
+        priority,
+      })
+      .then((res) => {
+        getTasks();
+      })
+      .catch((e) => {
+        console.log(e);
+        alert("something is going wrong");
+      });
+  };
+
   const deleteTask = (task) => {
     axios
       .delete(`https://expressjs-server.vercel.app/tasks/${task._id}`)
@@ -98,27 +112,34 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Kanban Board</h1>
-      <CreateModal
-        statuses={statuses}
-        priorities={priorities}
-        createTask={createTask}
-      />
-      <div className="container text-center">
-        <div className="row align-items-start">
-          {statuses.map((el) => (
-            <Column
-              statuses={statuses}
-              key={el._id}
-              column={el}
-              tasks={tasks}
-              changeStatus={changeStatus}
-              deleteTask={deleteTask}
-              priorities={priorities}
-              updateTask={updateTask}
-            />
-          ))}
+    <div className="min-vh-100 bg-light">
+      <div className="container">
+        <div className="py-3 d-flex justify-content-between">
+          <h2>
+            <strong>React Kanban</strong>
+          </h2>
+          <CreateModal
+            statuses={statuses}
+            priorities={priorities}
+            createTask={createTask}
+          />
+        </div>
+        <div className="container">
+          <div className="row align-items-start">
+            {statuses.map((el) => (
+              <Column
+                statuses={statuses}
+                key={el._id}
+                column={el}
+                tasks={tasks}
+                changeStatus={changeStatus}
+                deleteTask={deleteTask}
+                priorities={priorities}
+                updateTask={updateTask}
+                changePriority={changePriority}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
