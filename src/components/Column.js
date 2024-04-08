@@ -11,7 +11,6 @@ const Column = ({
   deleteTask,
   changePriority,
 }) => {
-  console.log(tasks);
   return (
     <div className="col-6 col-md-3">
       <h3 className="text-center">{column.title}</h3>
