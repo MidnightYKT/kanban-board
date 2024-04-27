@@ -28,7 +28,13 @@ const DeleteModal = ({ task, deleteTask }) => {
 
   return (
     <div>
-      <Button variant="button" color="danger" outline onClick={toggle}>
+      <Button
+        variant="button"
+        color="danger"
+        outline
+        onClick={toggle}
+        className="btn-sm"
+      >
         ×
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
@@ -49,10 +55,11 @@ const DeleteModal = ({ task, deleteTask }) => {
             color="primary"
             onClick={onDelete}
             disabled={task.name !== checking}
+            className="btn-sm"
           >
             Delete
           </Button>
-          <Button color="secondary" onClick={onCancel}>
+          <Button color="secondary" onClick={onCancel} className="btn-sm">
             Cancel
           </Button>
         </ModalFooter>

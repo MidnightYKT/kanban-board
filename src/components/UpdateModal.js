@@ -26,7 +26,7 @@ const UpdateModal = ({ statuses, priorities, task, updateTask }) => {
 
   return (
     <div className="mx-1">
-      <Button outline onClick={toggle}>
+      <Button outline onClick={toggle} className="btn-sm">
         Update
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
@@ -84,10 +84,11 @@ const UpdateModal = ({ statuses, priorities, task, updateTask }) => {
             color="primary"
             onClick={onSave}
             disabled={newTask.name === "" || newTask.description === ""}
+            className="btn-sm"
           >
             Save
           </Button>
-          <Button color="secondary" onClick={onCancel}>
+          <Button color="secondary" onClick={onCancel} className="btn-sm">
             Cancel
           </Button>
         </ModalFooter>

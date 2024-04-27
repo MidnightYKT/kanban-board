@@ -33,7 +33,7 @@ const Task = ({
             Priority: {task.priority}
             <Button
               variant="outline-info"
-              className="mx-2"
+              className="mx-2 btn-sm"
               onClick={plusPriority}
               disabled={task.priority === 10}
             >
@@ -41,6 +41,7 @@ const Task = ({
             </Button>
             <Button
               variant="outline-info"
+              className="btn-sm"
               onClick={minusPriority}
               disabled={task.priority === 0}
             >
@@ -53,6 +54,7 @@ const Task = ({
               onClick={() => changeStatus(task, -1)}
               disabled={task.status === statuses[0].status}
               outline
+              className="btn-sm"
             >
               ←
             </Button>
@@ -67,6 +69,7 @@ const Task = ({
               onClick={() => changeStatus(task, 1)}
               disabled={task.status === statuses[statuses.length - 1].status}
               outline
+              className="btn-sm"
             >
               →
             </Button>
